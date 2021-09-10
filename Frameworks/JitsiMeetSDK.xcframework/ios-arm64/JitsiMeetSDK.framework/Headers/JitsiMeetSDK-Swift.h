@@ -238,6 +238,7 @@ SWIFT_CLASS("_TtC12JitsiMeetSDK14JMCallKitProxy")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 /// Enables the proxy in between CallKit and the consumers of the SDK.
 /// Defaults to enabled, set to false when you don’t want to use CallKit.
+/// EDIT: set to false because ALbaraka Mobil rejected on App Store
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL enabled;)
 + (BOOL)enabled SWIFT_WARN_UNUSED_RESULT;
 + (void)setEnabled:(BOOL)value;
