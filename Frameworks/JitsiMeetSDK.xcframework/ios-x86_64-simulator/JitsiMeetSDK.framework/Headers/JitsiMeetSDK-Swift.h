@@ -188,8 +188,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
-@import CallKit;
-@import ObjectiveC;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -206,54 +204,6 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma clang attribute push(__attribute__((external_source_symbol(language="Swift", defined_in="JitsiMeetSDK",generated_declaration))), apply_to=any(function,enum,objc_interface,objc_category,objc_protocol))
 # pragma pop_macro("any")
 #endif
-
-
-
-@class NSUUID;
-@class NSNumber;
-@class AVAudioSession;
-@class CXAction;
-
-SWIFT_PROTOCOL("_TtP12JitsiMeetSDK17JMCallKitListener_")
-@protocol JMCallKitListener <NSObject>
-@optional
-- (void)providerDidReset;
-- (void)performAnswerCallWithUUID:(NSUUID * _Nonnull)UUID;
-- (void)performEndCallWithUUID:(NSUUID * _Nonnull)UUID;
-- (void)performSetMutedCallWithUUID:(NSUUID * _Nonnull)UUID isMuted:(BOOL)isMuted;
-- (void)performStartCallWithUUID:(NSUUID * _Nonnull)UUID isVideo:(BOOL)isVideo;
-- (void)providerDidActivateAudioSessionWithSession:(AVAudioSession * _Nonnull)session;
-- (void)providerDidDeactivateAudioSessionWithSession:(AVAudioSession * _Nonnull)session;
-- (void)providerTimedOutPerformingActionWithAction:(CXAction * _Nonnull)action;
-@end
-
-@class NSString;
-@class NSData;
-@class NSDate;
-@class CXTransaction;
-
-SWIFT_CLASS("_TtC12JitsiMeetSDK14JMCallKitProxy")
-@interface JMCallKitProxy : NSObject
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-/// Enables the proxy in between CallKit and the consumers of the SDK.
-/// Defaults to enabled, set to false when you don’t want to use CallKit.
-/// EDIT: set to false because ALbaraka Mobil rejected on App Store
-SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL enabled;)
-+ (BOOL)enabled SWIFT_WARN_UNUSED_RESULT;
-+ (void)setEnabled:(BOOL)value;
-+ (void)configureProviderWithLocalizedName:(NSString * _Nonnull)localizedName ringtoneSound:(NSString * _Nullable)ringtoneSound iconTemplateImageData:(NSData * _Nullable)iconTemplateImageData;
-+ (BOOL)isProviderConfigured SWIFT_WARN_UNUSED_RESULT;
-+ (void)addListener:(id <JMCallKitListener> _Nonnull)listener;
-+ (void)removeListener:(id <JMCallKitListener> _Nonnull)listener;
-+ (BOOL)hasActiveCallForUUID:(NSString * _Nonnull)callUUID SWIFT_WARN_UNUSED_RESULT;
-+ (void)reportNewIncomingCallWithUUID:(NSUUID * _Nonnull)UUID handle:(NSString * _Nullable)handle displayName:(NSString * _Nullable)displayName hasVideo:(BOOL)hasVideo completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
-+ (void)reportCallUpdateWith:(NSUUID * _Nonnull)UUID handle:(NSString * _Nullable)handle displayName:(NSString * _Nullable)displayName hasVideo:(BOOL)hasVideo;
-+ (void)reportCallWith:(NSUUID * _Nonnull)UUID endedAt:(NSDate * _Nullable)dateEnded reason:(CXCallEndedReason)endedReason;
-+ (void)reportOutgoingCallWith:(NSUUID * _Nonnull)UUID startedConnectingAt:(NSDate * _Nullable)dateStartedConnecting;
-+ (void)reportOutgoingCallWith:(NSUUID * _Nonnull)UUID connectedAt:(NSDate * _Nullable)dateConnected;
-+ (void)request:(CXTransaction * _Nonnull)transaction completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
-@end
 
 #if __has_attribute(external_source_symbol)
 # pragma clang attribute pop
